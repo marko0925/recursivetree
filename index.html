@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="p5.min.js"></script>
+    <script type="text/javascript" src="p5.dom.min.js"></script>
+    <title>Document</title>
+    <style media="screen">
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var angulo = 0;
+        var slider;
+
+        function setup() {
+            createCanvas(600, windowHeight);
+            angulo = PI / 4;
+            slider = createSlider(0, TWO_PI, PI / 4, 0.01);
+        }
+
+        function draw() {
+            background(40);
+            var len = 100;
+            angulo = slider.value();
+            stroke(255);
+            translate(width / 2, height);
+            arbolRecursivo(160);
+
+        }
+
+        function arbolRecursivo(len) {
+
+            if (len > 4) {
+                line(0, 0, 0, -len);
+                translate(0, -len);
+                push();
+                rotate(angulo);
+                arbolRecursivo(len * 0.67);
+                pop();
+                rotate(-angulo);
+                arbolRecursivo(len * 0.67);
+            }
+
+        }
+    </script>
+</body>
+
+</html>
